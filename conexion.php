@@ -2,7 +2,7 @@
 
     //conexion a servidor local 
     $usuario = "root";
-    $clave = ""; 
+    $clave = "Password123#@!"; 
     $servidor = "localhost";
     $base = "maersk";
 
