@@ -11,7 +11,7 @@
     //validar conexion 
     if (!$conexion)
     {
-        die("No se logro la conexión");
+        die("No se logro la conexión: " . mysqli_connect_error());
     }
     
 ?>
