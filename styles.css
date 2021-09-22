@@ -3,15 +3,22 @@
     grid-template-columns: 1fr 2fr;
 }
 
+.menu__principal {
+    text-align: right;
+    margin-top: 30px !important;
+    
+}
+
 .barra-nav__datos-usuario {
     background-color: rgb(37, 37, 37);
     color: white;
     text-align: right;
 }
 
-.menu__principal li, .barra-nav__datos-usuario ul li{
+.menu__principal li a, .barra-nav__datos-usuario ul li{
     list-style-type: none;
     display: inline;
+    color: red;
 }
 
 

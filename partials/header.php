@@ -25,9 +25,9 @@
           </div>
             <div class="barra-nav__menu">
               <ul class="menu__principal">
-                <li>Reservar</li>
-                <li>Seguimiento</li>
-                <li>Reporte</li>
+                <li><a href="reserva.php">Reserva</a></li> |
+                <li><a href="seguimiento.php">Seguimiento</a></li> |
+                <li><a href="reporte.php">Reporte</a></li>
               </ul>
             </div>
           </div>
