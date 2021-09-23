@@ -12,7 +12,10 @@
     <script type="text/javascript" src="../js/principal.js"></script>
     <link rel="shortcut icon" href="logo.png">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reserva.css">
+    <link rel="stylesheet" href="css/seguimiento.css">
+    <link rel="stylesheet" href="css/reporte.css">
     <title>Página Principal Asesor</title>
   </head>
   <body onload="onload()">

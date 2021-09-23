@@ -6,7 +6,8 @@
 .menu__principal {
     text-align: right;
     margin-top: 30px !important;
-    
+    list-style-type: none;
+    display: inline;
 }
 
 .barra-nav__datos-usuario {
@@ -15,10 +16,9 @@
     text-align: right;
 }
 
-.menu__principal li a, .barra-nav__datos-usuario ul li{
+.barra-nav__datos-usuario ul li{
     list-style-type: none;
     display: inline;
-    color: red;
 }
 
 
