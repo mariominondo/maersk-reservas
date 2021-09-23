@@ -248,14 +248,16 @@
                 </div>
                 
                 <input type="submit" name="btn" class="btn btn-primary" value="Registrarse">
-    </section>
-    </center>
+        </section>
+        </center>
+        
+        <footer>
+            <div class="foot-container">
+                <a target="_BLANK" href="https://www.instagram.com/maersk_official/"><i class="fab fa-instagram fa-lg"></i></a>
+                <br>
+                <a class="logout" href="login.php">Log Out</a>
+            </div>
+        </footer>
+    </body>
+    </html>
     
-    <footer>
-        <div class="foot-container">
-            <a target="_BLANK" href="https://www.instagram.com/maersk_official/"><i class="fab fa-instagram fa-lg"></i></a>
-            <br>
-            <a class="logout" href="login.php">Log Out</a>
-        </div>
-    </footer>
-  </body>

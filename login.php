@@ -22,7 +22,7 @@
     if(mysqli_num_rows($query) >  0)
     {
       $_SESSION['mostrar'] = $mostrar;
-      header("Location: index1.php");
+      header("Location: index.php");
     }
     else
     {
@@ -52,7 +52,7 @@
                     <button type="submit" class="btn btn-primary" id="btnlog" name="boton">Ingresar</button>
                     
                   </form>
-                  <p>No tienes una cuenta; <a href="indexclientes.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
+                  <p>No tienes una cuenta; <a href="signup.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
 
                  
             </div>
