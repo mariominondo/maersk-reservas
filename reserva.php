@@ -116,6 +116,8 @@
 
     <label for="codigo-de-contenedor">Código de Contenedor:</label>
     <input type="text" name="codigo-de-contenedor" id="" readonly>
+
+    <button type="submit">Reservar</button>
 </form>
 
 <?php require 'partials/footer.php'; ?>
