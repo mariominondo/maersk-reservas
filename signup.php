@@ -1,12 +1,12 @@
 <?php
     require("conexion.php");
 
-    global $conexion;
+    // global $conexion;
     $message = "";
     $message1 = "";
     $message2 = "";
     session_start();
-    error_reporting(0);
+    
     
     if (isset($_POST["btn"]))
     {
@@ -17,7 +17,7 @@
         $contraseña = $_POST["contraseña"];
         $rol_nuevo = $_POST["rol"];
         $pais = $_POST['pais'];
-               
+    }      
       
 ?>
 <!Doctype html>
@@ -94,9 +94,9 @@
  
   </head>
   <?php 
-  if ($message == "no")
-  {
-      ?><body onload="error()"><?php
+    if ($message == "no")
+    {
+  ?><body onload="error()"><?php
           
   }
   else if ($message == "si")
@@ -114,150 +114,67 @@
         <a class="nav-link" href="indextrabajador.php"><i class="fas fa-home fa-2x"></i></a>
     </nav>
     <center>
-    <section>
-        <h1 style="margin:30px 0px;font-size:5vh">Creacion de Usuario para Clientes</h1>
-            <?php 
-                if(!empty($message2)) 
-                {
-                    ?><p style="color: red;font-size:15px;">Llene el formulario</p><?php
-                }
-            ?>
-                <div class="row justify-content-center">
-                    <div class="col-9" >
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Nombre:</span>
-                            <input type="text" name="nombre" class="form-control"  aria-describedby="basic-addon1" required/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-9" >
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Apellido:</span>
-                            <input type="text" name="apellido" class="form-control"  aria-describedby="basic-addon1" required/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-4" >
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1" >Codigo de Usuario:</span>
-                            <input type="text" name="codigo" maxlength="4"   class="form-control"  aria-describedby="basic-addon1" required/>
-                        </div>
-                    </div>
-                    <div class="col-4" >
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Contraseña: </span>
-                            <input type="text" name="contraseña" id="contraseña" class="form-control"  aria-describedby="basic-addon1" required/>
-                        </div>
-                    </div>
-                    <div class="col-1" >
-                        <div class="input-group mb-3">
-                            <button type="button" class="btn btn-secondary" style="width: 100%;font-size:11px" onclick="generar()">Generar</button>
-                        </div>
-                    </div>
-                </div>
-                <?php
-                    if ($rol == "master")
-                    {
-                        ?>
-                        <div class="row justify-content-center">
-                            <div class="col-9" >
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">Rol:</span>
-                                    <select  id='origenselct' name="rol" class="form-select">
-                                        <option>Asesor</option>
-                                        <option>Administrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <div class="row justify-content-center">
-                            <div class="col-9" >
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">Rol:</span>
-                                    <select  id='origenselct' name="rol" class="form-select">
-                                        <option>Administrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                
-                ?>
+        <section>
+            <h1 style="margin:30px 0px;font-size:5vh">Creacion de Usuario para Clientes</h1>
                 <?php 
-                if(!empty($message1)) 
-                {
-                    ?><p style="color: red;font-size:15px;">En la empresa solo hay un Asesor</p><?php
-                }?>
-                <div class="row justify-content-center" style="margin-bottom: 20px;">
-                    <div class="col-4">
-                        <span  id="basic-addon1" >Pais: </span>
-                        <select  id='pais' name='pais' class="form-select" onchange="mostrar_contenedor(this.id)" >
-                            <option></option>
-                            <option>México</option>
-                            <option>Guatemala</option>
-                            <option>Honduras</option>
-                            <option>Panamá</option>
-                            <option>China</option>
-                            <option>Reyno Unido</option>
-                            <option>Estados Unidos</option>
-                            <option>Brasil</option>
-                        </select>
+                    if(!empty($message2)) 
+                    {
+                        ?><p style="color: red;font-size:15px;">Llene el formulario</p><?php
+                    }
+                ?>
+                <form class="form-signup">
+                    <div class="row justify-content-center">
+                        <div class="col-9" >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nombre:</span>
+                                <input type="text" name="nombre" class="form-control"  aria-describedby="basic-addon1" required/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <span  id='span' id="basic-addon1"  style="display: none;">Puerto Origen:</span>
-                        <select id='MX'  class="form-select"  style="display: none;">
-                            <option></option>
-                            <option>56899 – Puerto Manzanillo, Colima </option>
-                        </select>
-                        <select id='GUA'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>25868 – Puerto Santo Tomas de Castilla</option>
-                        </select>
-                        <select id='HND'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>78985 – Puerto San Lorenzo</option>
-                        </select>
-                        <select id='PAN'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>98789 – Puerto de Balboa</option>
-                        </select>
-                        <select id='CHN'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>23456 – Puerto de Qingdao</option>
-                        <select id='UK'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>23564 – Puerto Felixstowe, Suffolk</option>
-                        </select>
-                        <select id='USS'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>98987 – Puerto Long Beach, Los Ángeles</option>
-                        </select>
-                        <select id='BRS'  class="form-select" " style="display: none;">
-                            <option></option>
-                            <option>15486 – Puerto de Santos</option>
-                        </select>
+                    <div class="row justify-content-center">
+                        <div class="col-9" >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Apellido:</span>
+                                <input type="text" name="apellido" class="form-control"  aria-describedby="basic-addon1" required/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <input type="submit" name="btn" class="btn btn-primary" value="Registrarse">
-        </section>
+                    <div class="row justify-content-center">
+                        <div class="col-4" >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1" >Codigo de Usuario:</span>
+                                <input type="text" name="codigo" maxlength="4"   class="form-control"  aria-describedby="basic-addon1" required/>
+                            </div>
+                        </div>
+                        <div class="col-4" >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Contraseña: </span>
+                                <input type="text" name="contraseña" id="contraseña" class="form-control"  aria-describedby="basic-addon1" required/>
+                            </div>
+                        </div>
+                        <div class="col-1" >
+                            <div class="input-group mb-3">
+                                <button type="button" class="btn btn-secondary" style="width: 100%;font-size:11px" onclick="generar()">Generar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-9" >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Rol:</span>
+                                <select  id='origenselct' name="rol" class="form-select">
+                                    <option>Asesor</option>
+                                    <option>Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="submit" name="btn" class="btn btn-primary" value="Registrarse">
+                </form>
+            </section>
         </center>
-        
-        <footer>
-            <div class="foot-container">
-                <a target="_BLANK" href="https://www.instagram.com/maersk_official/"><i class="fab fa-instagram fa-lg"></i></a>
-                <br>
-                <a class="logout" href="login.php">Log Out</a>
-            </div>
-        </footer>
     </body>
     </html>
     

@@ -1,4 +1,12 @@
-<?php require 'partials/header.php'; ?> 
+<?php 
+    require 'partials/header.php'; 
+
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: /maersk-reservas/login.php');
+    }
+?> 
 
 <h1>Seguimiento</h1>
 

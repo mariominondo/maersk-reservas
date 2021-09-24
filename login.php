@@ -1,15 +1,15 @@
 <?php
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
 
-  include("conexion.php");
-
-  global $conexion;
+  require ("conexion.php");
 
   $message = '';
 
   if (isset($_POST['boton'])){
 
     session_start();
-    error_reporting(0);
     $codigo = $_POST["codigo"];
     $contra = $_POST["contra"];
   
@@ -30,7 +30,29 @@
     }
   }
 ?>
-  <?php require 'partials/header.php'; ?>
+  
+
+  <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/principal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3fe7ff7174.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/principal.js"></script>
+    <link rel="shortcut icon" href="logo.png">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reserva.css">
+    <link rel="stylesheet" href="css/seguimiento.css">
+    <link rel="stylesheet" href="css/reporte.css">
+    <title>Página Principal Asesor</title>
+  </head>
+  <body onload="onload()">
     
         <div class="m-0 vh-100 row justify-content-center align-items-center">
             <div class="col-4 p-5 text-center">
@@ -52,9 +74,10 @@
                     <button type="submit" class="btn btn-primary" id="btnlog" name="boton">Ingresar</button>
                     
                   </form>
-                  <p>No tienes una cuenta; <a href="signup.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
+                  <br><br><br><br>
+                  <p>No tienes una cuenta <a href="signup.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
 
                  
             </div>
         </div>
-        <?php require 'partials/footer.php'; ?>
+    

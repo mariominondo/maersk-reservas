@@ -1,4 +1,17 @@
+<?php
+  require ("conexion.php");
+
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+      header('Location: /maersk-reservas/login.php');
+    }
+?>
+
 <?php require 'partials/header.php'; ?> 
+
+
+
 <h1>Reporte de Facturación</h1>
 <h4>Buscar Código de Contenedor</h4>
 

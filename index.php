@@ -1,9 +1,11 @@
 <?php
     require ("conexion.php");
 
-    global $conexion;
-
     session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+      header('Location: /maersk-reservas/login.php');
+    }
 
     $tabla = $_SESSION['mostrar'];
     $codigo = $tabla['codigo']; 

@@ -24,13 +24,14 @@
       <nav class="barra-nav">
         <div class="barra-nav__header-superior">
           <div class="barra-nav__logo">
-              <img class="logo__image" style="width: 30vw;"" src="logo.png">
+              <a href="/maersk-reservas/"><img class="logo__image" style="width: 30vw;" src="logo.png"></a>
           </div>
             <div class="barra-nav__menu">
               <ul class="menu__principal">
                 <li><a href="reserva.php">Reserva</a></li> |
                 <li><a href="seguimiento.php">Seguimiento</a></li> |
-                <li><a href="reporte.php">Reporte</a></li>
+                <li><a href="reporte.php">Reporte</a></li> | 
+                <li><a href="logout.php">Logout</a></li>
               </ul>
             </div>
           </div>
