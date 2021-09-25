@@ -61,12 +61,13 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
-  `codigo` varchar(5) NOT NULL,
+  `codigo` varchar(20) NOT NULL,
   `password` varchar(80) NOT NULL,
   `nombre` varchar(30) DEFAULT NULL,
   `apellido` varchar(30) DEFAULT NULL,
   `rol` varchar(30) DEFAULT NULL,
   `pais` varchar(30) DEFAULT NULL,
+  `puerto` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,7 +78,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('01011','01011','Mario',NULL,NULL,NULL);
+INSERT INTO `usuarios` VALUES ('mario2','$2y$10$hF360GVTDXlKLXEpYRbFhe.KNtfg7VVoRW3qkLee.aAquWN2h8TGO',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -90,4 +91,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-24 16:55:54
+-- Dump completed on 2021-09-25 10:19:42
