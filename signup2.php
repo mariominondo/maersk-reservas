@@ -1,22 +1,22 @@
 <?php
-
-
   require 'conexion.php';
 
   $message = '';
 
   if (!empty($_POST['codigo']) && !empty($_POST['password'])) {
-    $sql = "INSERT INTO usuarios (codigo, password) VALUES (codigo, password);";
+    $sql = "INSERT INTO usuarios (codigo, password) VALUES (?, ?);";
     $stmt = $conexion->prepare($sql);
-    $stmt->bindParam('codigo', $_POST['codigo']);
+    // $stmt->bind_param('codigo', $_POST['codigo']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $stmt->bindParam('password', $password);
+    $stmt->bind_param('ss', $_POST['codigo'], $password);
 
     if ($stmt->execute()) {
       $message = 'Usuario creado satisfactoriamente';
     } else {
       $message = 'Lo siento, debe existir un problema para crear tu cuenta';
     }
+  } else {
+    $message = 'Debes escribir un usuario y contraseña';
   }
 ?>
 

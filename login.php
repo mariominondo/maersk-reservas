@@ -1,33 +1,41 @@
 <?php
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
+  require "conexion.php";
 
-  require ("conexion.php");
+  session_start();
+  $message = "";
 
-  $message = '';
-
-  if (isset($_POST['boton'])){
-
-    session_start();
+  if (isset($_POST["codigo"]) && isset($_POST["password"])){
     $codigo = $_POST["codigo"];
-    $contra = $_POST["contra"];
-  
-  
-    $query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE codigo = '$codigo' AND password = '$contra' "); 
-    $mostrar =  mysqli_fetch_array($query);
+    $password = $_POST["password"];
+
+    
+    $sql = "SELECT codigo, password FROM usuarios WHERE codigo = '$codigo' ";
+    $result = $conexion->query($sql); 
+
+    $row = $result->fetch_row();
+
+    // echo "password traido= " . $row[1];
+
+    if(password_verify($password, $row[1])){
+      $_SESSION['codigo'] = $row[0];
+      header("Location: /maersk-reservas");
+ 
+    } else {
+      echo "password invalido";
+    }
     
   
-  
-    if(mysqli_num_rows($query) >  0)
-    {
-      $_SESSION['mostrar'] = $mostrar;
-      header("Location: index.php");
-    }
-    else
-    {
-      $message = "Revise su codigo o contraseña";
-    }
+    // if(mysqli_num_rows($query) >  0)
+    // {
+    //   $_SESSION["mostrar"] = $mostrar;
+    //   header("Location: index.php");
+    // }
+    // else
+    // {
+    //   $message = "Revise su codigo o contraseña";
+    // }
+  } else {
+    $message = "Debes escribir un usuario y contraseña";
   }
 ?>
   
@@ -43,9 +51,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3fe7ff7174.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <title>Página Principal Asesor</title>
+    <title>MAERSK Reservas | Login</title>
   </head>
-  <body onload="onload()">
+  <body>
     
         <div class="m-0 vh-100 row justify-content-center align-items-center">
             <div class="col-4 p-5 text-center">
@@ -57,18 +65,18 @@
               <?php endif;?>
                 <form action="login.php" method="POST" class="text-center"  >
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Código</label> 
+                      <label for="codigo" class="form-label">Código</label> 
                       <input type="text" class="form-control" id="codigo" name="codigo" >
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="contra" name="contra">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary" id="btnlog" name="boton">Ingresar</button>
                     
                   </form>
                   <br><br><br><br>
-                  <p>No tienes una cuenta <a href="signup2.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
+                  <p>No tienes una cuenta <a href="signup2.php" style="color:blue;text-decoration:underline;">pulsa aquí</a></p> 
 
                  
             </div>
