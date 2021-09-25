@@ -1,16 +1,13 @@
 <?php
     require("conexion.php");
 
-    // global $conexion;
     $message = "";
     $message1 = "";
-    $message2 = "";
-    session_start();
+    $message2 = "";    
     
-    
-    if (isset($_POST["btn"]))
+    if (isset($_POST["codigo"]))
     {
-        echo"<script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        // echo"<script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
         $nombre = $_POST["nombre"];
         $apellido = $_POST["apellido"];
         $codigo = $_POST["codigo"];

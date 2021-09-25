@@ -1,3 +1,4 @@
+</main>
 <footer>
         <center>
             <div class="footer-container">
