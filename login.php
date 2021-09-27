@@ -14,8 +14,6 @@
 
     $row = $result->fetch_row();
 
-    // echo "password traido= " . $row[1];
-
     if(password_verify($password, $row[1])){
       $_SESSION['codigo'] = $row[0];
       header("Location: /maersk-reservas");
@@ -23,22 +21,10 @@
     } else {
       echo "password invalido";
     }
-    
-  
-    // if(mysqli_num_rows($query) >  0)
-    // {
-    //   $_SESSION["mostrar"] = $mostrar;
-    //   header("Location: index.php");
-    // }
-    // else
-    // {
-    //   $message = "Revise su codigo o contraseña";
-    // }
   } else {
     $message = "Debes escribir un usuario y contraseña";
   }
 ?>
-  
 
   <!doctype html>
 <html lang="en">
