@@ -9,27 +9,7 @@ if (!isset($_SESSION['codigo'])) {
 
 $message = "";
 
-$id_reserva              = "";
-$empresa                 = "";
-$nit                     = "";
-$direccion               = "";
-$puerto_de_origen        = "";
-$pais_de_origen          = "";
-$puerto_de_destino       = "";
-$pais_de_destino         = "";
-$receptor_de_carga       = "";
-$contrasena_de_recepcion = "";
-$tipo_de_carga           = "";
-$descripcion_de_carga    = "";
-$peso_de_carga           = "";
-$valor_de_carga          = "";
-$tipo_de_contenedor      = "";
-$codigo_de_contendedor   = "";
-
 $codigo = $_SESSION['codigo'];
-// $nombre = $_SESSION['nombre'];
-// $apellido = $_SESSION['apellido'];
-// $rol = $_SESSION['rol'];
 
 require 'partials/bootstrap_header.php';
 ?>
@@ -50,34 +30,34 @@ if ($row) {
     $rol = $row[2];
 }
 
-// echo $button_val;
-// $button_val = ($_POST['prueba']);
-// if (isset($_POST['submit'])){
-//     echo 'pressed';
-// }
-
 // Validación de datos
-if (!empty($_POST["empresa"]) 
-    // &&
-    // isset($_POST["nit"]) && isset($_POST["direccion"]) &&
-    // isset($_POST["puerto_de_origen"]) && isset($_POST["pais_de_origen"]) &&
-    // isset($_POST["puerto_de_destino"]) && isset($_POST["pais_de_destino"]) &&
-    // isset($_POST["receptor_de_carga"]) && isset($_POST["contrasena_de_recepcion"]) &&
-    // isset($_POST["tipo_de_carga"]) && isset($_POST["descripcion_de_carga"]) &&
-    // isset($_POST["peso_de_carga"]) && isset($_POST["valor_de_carga"]) &&
-    // isset($_POST["tipo_de_contenedor"]) && isset($_POST["codigo_de_contendedor"])
-    ) {
+if (isset($_POST['submit-reservar'])) {
 
+    $empresa = $_POST["empresa"];
+    $nit = $_POST["nit"];
+    $direccion = $_POST["direccion"];
+    $puerto_de_origen = $_POST["puerto-de-origen"];
+    $pais_de_origen = $_POST["pais-de-origen"];
+    $puerto_de_destino = $_POST["puerto-de-destino"];
+    $pais_de_destino = $_POST["pais-de-destino"];
+    $receptor_de_carga = $_POST["receptor-de-carga"];
+    $contrasena_de_recepcion = $_POST["contrasena-de-recepcion"];
+    $tipo_de_carga = $_POST["tipo-de-carga"];
+    $descripcion_de_carga = $_POST["descripcion-de-carga"];
+    $peso_de_carga = $_POST["peso-de-carga"];
+    $valor_de_carga = $_POST["valor-de-carga"];
+    $tipo_de_contenedor = $_POST["tipo-de-contenedor"];
+    $codigo_de_contendedor = $_POST["codigo-de-contendedor"];
 
-    $sql = "INSERT INTO reservas VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
+    $sql = "INSERT INTO reservas (empresa, nit, direccion, puerto_de_origen, pais_de_origen, puerto_de_destino, pais_de_destino, receptor_de_carga, contrasena_de_recepcion, tipo_de_carga, descripcion_de_carga, peso_de_carga, valor_de_carga, tipo_de_contenedor, codigo_de_contendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param('dsssssssssssddss', id_reserva,empresa,nit,direccion,puerto_de_origen,pais_de_origen,puerto_de_destino,pais_de_destino,receptor_de_carga,contrasena_de_recepcion,tipo_de_carga,descripcion_de_carga,peso_de_carga,valor_de_carga,tipo_de_contenedor,codigo_de_contendedor);
+    $stmt->bind_param('ssssssssssbddss', $empresa, $nit, $direccion, $puerto_de_origen, $pais_de_origen, $puerto_de_destino, $pais_de_destino, $receptor_de_carga, $contrasena_de_recepcion, $tipo_de_carga, $descripcion_de_carga, $peso_de_carga, $valor_de_carga, $tipo_de_contenedor, $codigo_de_contendedor);
 
     if ($stmt->execute()) {
-      $message = 'Reserva creada satisfactoriamente!';
+        $message = 'Reserva creada satisfactoriamente!';
     } else {
-      $message = 'Lo siento, debe existir un problema para crear tu reserva';
+        $message = 'Lo siento, debe existir un problema para crear tu reserva';
     }
 
 } else {
@@ -96,15 +76,15 @@ if (!empty($_POST["empresa"])
 
 <h1 style="margin:30px 0px;font-size:5vh">Reserva de un contenedor</h1>
 
-<?php if (!empty($message)): ?>
-    <p style="color:red;"><?= $message ?></p>
+<?php if (!empty($message) && isset($_POST['submit-reservar'])): ?>
+    <p style="color:red;"><?=$message?></p>
 <?php endif;?>
-<form action="reserva.php" method="post">
 
+<form action="reserva.php" method="post">
     <div class="row justify-content-center" style="margin-top:20px;">
         <div class="col-4">
             <label for="name">Nombre o Empresa:</label>
-            <input type="text" name="nombre" style="display: block; width: 50%; text-align: left;" class="form-control" required>
+            <input type="text" name="empresa" style="display: block; width: 50%; text-align: left;" class="form-control" required>
         </div>
         <div class="col-4">
             <label for="nit">NIT:</label>
@@ -120,9 +100,9 @@ if (!empty($_POST["empresa"])
         <div class="row justify-content-center">
 
             <div class="col-5">
-                <label for="puerto-origen" class=>Puerto de Origen:</label>
-                <input type="text" name="puerto-origen" class="form-select" id="" list="puerto-origen" style="width:80%;" required>
-                <datalist id="puerto-origen">
+                <label for="puerto-de-origen" class=>Puerto de Origen:</label>
+                <input type="text" name="puerto-de-origen" class="form-select" id="" list="puerto-de-origen" style="width:80%;" required>
+                <datalist id="puerto-de-origen">
                     <option value="25868 –Puerto Santo Tomas de Castilla –Guatemala">
                     <option value="56899 –Puerto Manzanillo, Colima –México">
                     <option value="78985 –Puerto San Lorenzo –Honduras">
@@ -134,9 +114,9 @@ if (!empty($_POST["empresa"])
                 </datalist>
             </div>
             <div class="col-5">
-                <label for="pais-origen" class="form-label">País de Origen:</label>
-                <input type="" name="pais-origen" id="" list="pais-origen" class="form-select" style="width:80%;" required>
-                <datalist id="pais-origen">
+                <label for="pais-de-origen" class="form-label">País de Origen:</label>
+                <input type="text" name="pais-de-origen" id="" list="pais-de-origen" class="form-select" style="width:80%;" required>
+                <datalist id="pais-de-origen">
                     <option value="GUA –Guatemala">
                     <option value="MX –México">
                     <option value="HND –Honduras">
@@ -149,9 +129,9 @@ if (!empty($_POST["empresa"])
             </div>
             <div class="row justify-content-center">
                 <div class="col-5">
-                    <label for="puerto-destino" class="form-label">Puerto de Destino:</label>
-                    <input type="text" name="puerto-destino" id="" list="puerto-destino" class="form-select" style="width:80%;" required>
-                    <datalist id="puerto-destino">
+                    <label for="puerto-de-destino" class="form-label">Puerto de Destino:</label>
+                    <input type="text" name="puerto-de-destino" id="" list="puerto-de-destino" class="form-select" style="width:80%;" required>
+                    <datalist id="puerto-de-destino">
                         <option value="25868 –Puerto Santo Tomas de Castilla –Guatemala">
                         <option value="56899 –Puerto Manzanillo, Colima –México">
                         <option value="78985 –Puerto San Lorenzo –Honduras">
@@ -163,9 +143,9 @@ if (!empty($_POST["empresa"])
                     </datalist>
                 </div>
                 <div class="col-5">
-                    <label for="pais-destino" class="form-label">País de Destino:</label>
-                    <input type="" name="pais-destino" id="" list="pais-destino" class="form-select" style="width:80%;" required>
-                    <datalist id="pais-destino">
+                    <label for="pais-de-destino" class="form-label">País de Destino:</label>
+                    <input type="text" name="pais-de-destino" id="" list="pais-de-destino" class="form-select" style="width:80%;" required>
+                    <datalist id="pais-de-destino">
                         <option value="GUA –Guatemala">
                         <option value="MX –México">
                         <option value="HND –Honduras">
@@ -177,12 +157,11 @@ if (!empty($_POST["empresa"])
                     </datalist>
                 </div>
             </div>
-
-
+        </div>
 
             <div class="row justify-content-center">
                 <div class="col-6">
-                    <label for="receptor-de-carga class=" form-label">Receptor de Carga:</label>
+                    <label for="receptor-de-carga" class="form-label">Receptor de Carga:</label>
                     <input type="text" name="receptor-de-carga" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
                 </div>
                 <div class="row justify-content-center">
@@ -195,7 +174,7 @@ if (!empty($_POST["empresa"])
                 <div class="row justify-content-center">
                     <div class="col-6">
                         <label for="tipo-de-carga" class="form-label">Tipo de Carga:</label>
-                        <input type="" name="tipo-de-carga" id="" list="tipo-de-carga" class="form-select" required>
+                        <input type="text" name="tipo-de-carga" id="" list="tipo-de-carga" class="form-select" required>
                         <datalist id="tipo-de-carga">
                             <option value="Productos animales">
                             <option value="Cereales y otras preparaciones">
@@ -211,8 +190,9 @@ if (!empty($_POST["empresa"])
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-6" <label for="descripcion-de-la-carga" class="form-label">Descripción de la Carga:</label>
-                        <input type="text" name="descripcion-de-la-carga" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
+                    <div class="col-6">
+                        <label for="descripcion-de-carga" class="form-label">Descripción de la Carga:</label>
+                        <input type="text" name="descripcion-de-carga" id="" style="display: block; width: 100%; text-align: center;" class="form-control" required>
                     </div>
                 </div>
 
@@ -224,9 +204,9 @@ if (!empty($_POST["empresa"])
 
 
                     <div class="col-3">
-                        <label for="valor-de-la-carga class=" form-label">Valor de la Carga:</label>
-                        <input type="text" style="width :50%;" name="valor-de-la-carga" id="" list="valor-de-la-carga" class="form-select" required>
-                        <datalist id="valor-de-la-carga">
+                        <label for="valor-de-carga class=" form-label">Valor de la Carga:</label>
+                        <input type="text" style="width :50%;" name="valor-de-carga" id="" list="valor-de-carga" class="form-select" required>
+                        <datalist id="valor-de-carga">
                             <option value="$1,000">
                             <option value="$2,000">
                             <option value="$3,000">
@@ -255,30 +235,10 @@ if (!empty($_POST["empresa"])
                         </div>
                     </div>
                     <div class="col-2">
-                        <button type="submit" class="btn btn-outline-dark" style="margin-top:30px;" name="submit" onclick="fillVariables()">Reservar</button>
+                        <button type="submit" class="btn btn-outline-dark" style="margin-top:30px;" name="submit-reservar">Reservar</button>
                     </div>
+                </div>
+    </div>
     </form>
-
-    <script>
-        function fillVariables() {
-            $id_reserva = $_POST["id_reserva"]; 
-            $empresa = $_POST["empresa"];
-            $nit = $_POST["nit"];
-            $direccion = $_POST["direccion"];
-            $puerto_de_origen = $_POST["puerto_de_origen"];
-            $pais_de_origen = $_POST["pais_de_origen"];
-            $puerto_de_destino = $_POST["puerto_de_destino"];
-            $pais_de_destino = $_POST["pais_de_destino"];
-            $receptor_de_carga = $_POST["receptor_de_carga"];
-            $contrasena_de_recepcion = $_POST["contrasena_de_recepcion"];
-            $tipo_de_carga = $_POST["tipo_de_carga"];
-            $descripcion_de_carga = $_POST["descripcion_de_carga"];
-            $peso_de_carga = $_POST["peso_de_carga"];
-            $valor_de_carga  = $_POST["valor_de_carga"];
-            $tipo_de_contenedor = $_POST["tipo_de_contenedor"];
-            $codigo_de_contendedor = $_POST["codigo_de_contendedor"];
-        }
-    </script>
-    
 
 <?php require 'partials/footer.php';?>
