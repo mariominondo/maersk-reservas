@@ -17,7 +17,6 @@
     if(password_verify($password, $row[1])){
       $_SESSION['codigo'] = $row[0];
       header("Location: /maersk-reservas");
- 
     } else {
       echo "password invalido";
     }
