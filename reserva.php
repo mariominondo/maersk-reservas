@@ -29,41 +29,6 @@ if ($row) {
     $apellido = $row[1];
     $rol = $row[2];
 }
-
-// Validación de datos
-if (isset($_POST['submit-reservar'])) {
-
-    $empresa = $_POST["empresa"];
-    $nit = $_POST["nit"];
-    $direccion = $_POST["direccion"];
-    $puerto_de_origen = $_POST["puerto-de-origen"];
-    $pais_de_origen = $_POST["pais-de-origen"];
-    $puerto_de_destino = $_POST["puerto-de-destino"];
-    $pais_de_destino = $_POST["pais-de-destino"];
-    $receptor_de_carga = $_POST["receptor-de-carga"];
-    $contrasena_de_recepcion = $_POST["contrasena-de-recepcion"];
-    $tipo_de_carga = $_POST["tipo-de-carga"];
-    $descripcion_de_carga = $_POST["descripcion-de-carga"];
-    $peso_de_carga = $_POST["peso-de-carga"];
-    $valor_de_carga = $_POST["valor-de-carga"];
-    $tipo_de_contenedor = $_POST["tipo-de-contenedor"];
-    $codigo_de_contendedor = $_POST["codigo-de-contendedor"];
-
-    $sql = "INSERT INTO reservas (empresa, nit, direccion, puerto_de_origen, pais_de_origen, puerto_de_destino, pais_de_destino, receptor_de_carga, contrasena_de_recepcion, tipo_de_carga, descripcion_de_carga, peso_de_carga, valor_de_carga, tipo_de_contenedor, codigo_de_contendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param('ssssssssssbddss', $empresa, $nit, $direccion, $puerto_de_origen, $pais_de_origen, $puerto_de_destino, $pais_de_destino, $receptor_de_carga, $contrasena_de_recepcion, $tipo_de_carga, $descripcion_de_carga, $peso_de_carga, $valor_de_carga, $tipo_de_contenedor, $codigo_de_contendedor);
-
-    if ($stmt->execute()) {
-        $message = 'Reserva creada satisfactoriamente!';
-    } else {
-        $message = 'Lo siento, debe existir un problema para crear tu reserva';
-    }
-
-} else {
-    $message = "¡Todos son requeridos!";
-}
-
 ?>
 
 <div class="barra-nav__datos-usuario">
@@ -75,10 +40,49 @@ if (isset($_POST['submit-reservar'])) {
 </div>
 
 <h1 style="margin:30px 0px;font-size:5vh">Reserva de un contenedor</h1>
-
 <?php if (!empty($message) && isset($_POST['submit-reservar'])): ?>
     <p style="color:red;"><?=$message?></p>
 <?php endif;?>
+
+<?php
+if ($row[2] == "Administrador") {
+
+    // Validación de datos solamente si es administrador
+    if (isset($_POST['submit-reservar'])) {
+
+        $empresa = $_POST["empresa"];
+        $nit = $_POST["nit"];
+        $direccion = $_POST["direccion"];
+        $puerto_de_origen = $_POST["puerto-de-origen"];
+        $pais_de_origen = $_POST["pais-de-origen"];
+        $puerto_de_destino = $_POST["puerto-de-destino"];
+        $pais_de_destino = $_POST["pais-de-destino"];
+        $receptor_de_carga = $_POST["receptor-de-carga"];
+        $contrasena_de_recepcion = $_POST["contrasena-de-recepcion"];
+        $tipo_de_carga = $_POST["tipo-de-carga"];
+        $descripcion_de_carga = $_POST["descripcion-de-carga"];
+        $peso_de_carga = $_POST["peso-de-carga"];
+        $valor_de_carga = $_POST["valor-de-carga"];
+        $tipo_de_contenedor = $_POST["tipo-de-contenedor"];
+        $codigo_de_contendedor = $_POST["codigo-de-contendedor"];
+
+        $sql = "INSERT INTO reservas (empresa, nit, direccion, puerto_de_origen, pais_de_origen, puerto_de_destino, pais_de_destino, receptor_de_carga, contrasena_de_recepcion, tipo_de_carga, descripcion_de_carga, peso_de_carga, valor_de_carga, tipo_de_contenedor, codigo_de_contendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('ssssssssssbddss', $empresa, $nit, $direccion, $puerto_de_origen, $pais_de_origen, $puerto_de_destino, $pais_de_destino, $receptor_de_carga, $contrasena_de_recepcion, $tipo_de_carga, $descripcion_de_carga, $peso_de_carga, $valor_de_carga, $tipo_de_contenedor, $codigo_de_contendedor);
+
+        if ($stmt->execute()) {
+            $message = 'Reserva creada satisfactoriamente!';
+        } else {
+            $message = 'Lo siento, debe existir un problema para crear tu reserva';
+        }
+
+    } else {
+        $message = "¡Todos son requeridos!";
+    }
+?>
+
+
 
 <form action="reserva.php" method="post">
     <div class="row justify-content-center" style="margin-top:20px;">
@@ -240,5 +244,12 @@ if (isset($_POST['submit-reservar'])) {
                 </div>
     </div>
     </form>
+
+<?php
+
+} else {
+    $message = "Debes ser Administrador para crear una reserva.";
+}
+?>
 
 <?php require 'partials/footer.php';?>
