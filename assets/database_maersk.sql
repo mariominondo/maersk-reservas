@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: maersk
 -- ------------------------------------------------------
--- Server version	8.0.26-0ubuntu0.20.04.2
+-- Server version	8.0.26-0ubuntu0.20.04.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,13 +34,13 @@ CREATE TABLE `reservas` (
   `receptor_de_carga` varchar(50) DEFAULT NULL,
   `contrasena_de_recepcion` varchar(20) DEFAULT NULL,
   `tipo_de_carga` varchar(40) DEFAULT NULL,
-  `descripcion_de_carga` blob,
+  `descripcion_de_carga` varchar(1000) NOT NULL,
   `peso_de_carga` decimal(8,2) DEFAULT NULL,
   `valor_de_carga` decimal(8,2) DEFAULT NULL,
   `tipo_de_contenedor` varchar(60) DEFAULT NULL,
   `codigo_de_contendedor` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_reserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (1,'mi empresa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'mi empresa 2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `reservas` VALUES (11,'HP','88888','FL','25868 –Puerto Santo Tomas de Castilla –Guatemala','HND –Honduras','56899 –Puerto Manzanillo, Colima –México','HND –Honduras','Juan Perez','1','Cereales y otras preparaciones','Granola en costal',5555.00,2000.00,'OSSI -Open Side o apertura lateral - $260 x tonelada','ABC123');
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('mario2','$2y$10$hF360GVTDXlKLXEpYRbFhe.KNtfg7VVoRW3qkLee.aAquWN2h8TGO',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `usuarios` VALUES ('mario2','$2y$10$bC1aJM5wp9yQutCHWfZ67.caTz478TCKs4JH.LNgfkXSiT.Y447hG','Mario','Minondo','Administrador','Guatemala','123');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -91,4 +91,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-25 10:19:42
+-- Dump completed on 2021-10-02  0:49:25
