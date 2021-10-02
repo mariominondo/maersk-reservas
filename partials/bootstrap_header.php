@@ -37,13 +37,13 @@
             </ul>
         </div>
     </nav>
-
+<!-- 
     <div class="barra-nav__datos-usuario">
         <ul>
             <li>Código: 0001</li>
             <li>Nombre: Rodrigo</li>
             <li>Rol: Administrador</li>
         </ul>
-    </div>
+    </div> -->
 
     <main>

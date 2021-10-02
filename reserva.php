@@ -12,9 +12,21 @@ $message = "";
 $codigo = $_SESSION['codigo'];
 
 require 'partials/bootstrap_header.php';
-?>
 
-<?php
+// CREAR CONTRASENA
+    function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+    $contrasena = randomPassword();
+    $codigoContenedorUnico = randomPassword();
+
 // GET USER INFO
 $sql = "SELECT nombre, apellido, rol FROM usuarios WHERE codigo = '$codigo' ";
 $result = $conexion->query($sql);
@@ -64,12 +76,12 @@ if ($row[2] == "Administrador") {
         $peso_de_carga = $_POST["peso-de-carga"];
         $valor_de_carga = $_POST["valor-de-carga"];
         $tipo_de_contenedor = $_POST["tipo-de-contenedor"];
-        $codigo_de_contendedor = $_POST["codigo-de-contendedor"];
+        $codigo_de_contendedor = $_POST["codigo-de-contenedor"];
 
         $sql = "INSERT INTO reservas (empresa, nit, direccion, puerto_de_origen, pais_de_origen, puerto_de_destino, pais_de_destino, receptor_de_carga, contrasena_de_recepcion, tipo_de_carga, descripcion_de_carga, peso_de_carga, valor_de_carga, tipo_de_contenedor, codigo_de_contendedor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('ssssssssssbddss', $empresa, $nit, $direccion, $puerto_de_origen, $pais_de_origen, $puerto_de_destino, $pais_de_destino, $receptor_de_carga, $contrasena_de_recepcion, $tipo_de_carga, $descripcion_de_carga, $peso_de_carga, $valor_de_carga, $tipo_de_contenedor, $codigo_de_contendedor);
+        $stmt->bind_param('sssssssssssddss', $empresa, $nit, $direccion, $puerto_de_origen, $pais_de_origen, $puerto_de_destino, $pais_de_destino, $receptor_de_carga, $contrasena_de_recepcion, $tipo_de_carga, $descripcion_de_carga, $peso_de_carga, $valor_de_carga, $tipo_de_contenedor, $codigo_de_contendedor);
 
         if ($stmt->execute()) {
             $message = 'Reserva creada satisfactoriamente!';
@@ -92,20 +104,20 @@ if ($row[2] == "Administrador") {
         </div>
         <div class="col-4">
             <label for="nit">NIT:</label>
-            <input type="text" name="nit" id="" style="display: block; width: 50%;text-align: left;" class="form-control" required>
+            <input type="text" name="nit"  style="display: block; width: 50%;text-align: left;" class="form-control" required>
         </div>
 
         <div class="row justify-content-center" style="margin-top:20px;">
             <div class="col-4">
                 <label for="direccion">Dirección:</label>
-                <input type="text" name="direccion" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
+                <input type="text" name="direccion"  style="display: block; width: 100%;text-align: center;" class="form-control" required>
             </div>
         </div>
         <div class="row justify-content-center">
 
             <div class="col-5">
-                <label for="puerto-de-origen" class=>Puerto de Origen:</label>
-                <input type="text" name="puerto-de-origen" class="form-select" id="" list="puerto-de-origen" style="width:80%;" required>
+                <label for="puerto-de-origen" class="puerto-de-origen">Puerto de Origen:</label>
+                <input type="text" name="puerto-de-origen" class="form-select"  list="puerto-de-origen" style="width:80%;" required>
                 <datalist id="puerto-de-origen">
                     <option value="25868 –Puerto Santo Tomas de Castilla –Guatemala">
                     <option value="56899 –Puerto Manzanillo, Colima –México">
@@ -119,7 +131,7 @@ if ($row[2] == "Administrador") {
             </div>
             <div class="col-5">
                 <label for="pais-de-origen" class="form-label">País de Origen:</label>
-                <input type="text" name="pais-de-origen" id="" list="pais-de-origen" class="form-select" style="width:80%;" required>
+                <input type="text" name="pais-de-origen"  list="pais-de-origen" class="form-select" style="width:80%;" required>
                 <datalist id="pais-de-origen">
                     <option value="GUA –Guatemala">
                     <option value="MX –México">
@@ -134,7 +146,7 @@ if ($row[2] == "Administrador") {
             <div class="row justify-content-center">
                 <div class="col-5">
                     <label for="puerto-de-destino" class="form-label">Puerto de Destino:</label>
-                    <input type="text" name="puerto-de-destino" id="" list="puerto-de-destino" class="form-select" style="width:80%;" required>
+                    <input type="text" name="puerto-de-destino"  list="puerto-de-destino" class="form-select" style="width:80%;" required>
                     <datalist id="puerto-de-destino">
                         <option value="25868 –Puerto Santo Tomas de Castilla –Guatemala">
                         <option value="56899 –Puerto Manzanillo, Colima –México">
@@ -148,7 +160,7 @@ if ($row[2] == "Administrador") {
                 </div>
                 <div class="col-5">
                     <label for="pais-de-destino" class="form-label">País de Destino:</label>
-                    <input type="text" name="pais-de-destino" id="" list="pais-de-destino" class="form-select" style="width:80%;" required>
+                    <input type="text" name="pais-de-destino"  list="pais-de-destino" class="form-select" style="width:80%;" required>
                     <datalist id="pais-de-destino">
                         <option value="GUA –Guatemala">
                         <option value="MX –México">
@@ -166,19 +178,19 @@ if ($row[2] == "Administrador") {
         <div class="row justify-content-center">
             <div class="col-6">
                 <label for="receptor-de-carga" class="form-label">Receptor de Carga:</label>
-                <input type="text" name="receptor-de-carga" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
+                <input type="text" name="receptor-de-carga"  style="display: block; width: 100%;text-align: center;" class="form-control" required>
             </div>
             <div class="row justify-content-center">
                 <div class="col-6">
                     <label for="contrasena-de-recepcion" class="form-label">Contraseña de Recepción:</label>
-                    <input type="text" name="contrasena-de-recepcion" id="" readonly style="display: block; width: 100%;text-align: center;" class="form-control"  value="1" required>
+                    <input type="text" name="contrasena-de-recepcion"  readonly style="display: block; width: 100%;text-align: center;" class="form-control"  value="<?= $contrasena ?>" required>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-6">
                     <label for="tipo-de-carga" class="form-label">Tipo de Carga:</label>
-                    <input type="text" name="tipo-de-carga" id="" list="tipo-de-carga" class="form-select" required>
+                    <input type="text" name="tipo-de-carga"  list="tipo-de-carga" class="form-select" required>
                     <datalist id="tipo-de-carga">
                         <option value="Productos animales">
                         <option value="Cereales y otras preparaciones">
@@ -196,33 +208,33 @@ if ($row[2] == "Administrador") {
             <div class="row justify-content-center">
                 <div class="col-6">
                     <label for="descripcion-de-carga" class="form-label">Descripción de la Carga:</label>
-                    <input type="text" name="descripcion-de-carga" id="" style="display: block; width: 100%; text-align: center;" class="form-control" required>
+                    <input type="text" name="descripcion-de-carga"  style="display: block; width: 100%; text-align: center;" class="form-control" required>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-3">
                     <label for="peso-de-carga" class="form-label">Peso de Carga (Kg):</label>
-                    <input type="text" name="peso-de-carga" id="" style="display: block; width: 100%;text-align: left;" class="form-control" required>
+                    <input type="text" name="peso-de-carga"  style="display: block; width: 100%;text-align: left;" class="form-control" required>
                 </div>
 
 
                 <div class="col-3">
                     <label for="valor-de-carga" class="form-label">Valor de la Carga:</label>
-                    <input type="text" style="width: 50%;" name="valor-de-carga" id="" list="valor-de-carga" class="form-select" required>
-                    <datalist id="valor-de-carga">
-                        <option value="$1,000">
-                        <option value="$2,000">
-                        <option value="$3,000">
-                        <option value="$4,000">
-                        <option value="$5,000">
-                    </datalist>
+                    <!-- <input type="text" style="width: 50%;" name="valor-de-carga"  list="valor-de-carga" class="form-select" required> -->
+                    <select id="valor-de-carga" name="valor-de-carga">
+                        <option value="1000">$1,000</option>
+                        <option value="2000">$2,000</option>
+                        <option value="3000">$3,000</option>
+                        <option value="4000">$4,000</option>
+                        <option value="5000">$5,000</option>
+                    </select>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-6">
                     <label for="tipo-de-contenedor" class="form-label">Tipo de Contenedor:</label>
-                    <input type="text" name="tipo-de-contenedor" id="" list="tipo-de-contenedor" class="form-select" style="width:80%" required>
+                    <input type="text" name="tipo-de-contenedor"  list="tipo-de-contenedor" class="form-select" style="width:80%" required>
                     <datalist id="tipo-de-contenedor">
                         <option value="DRVA -Dry Van o contenedor seco - $200 x tonelada">
                         <option value="REFRR -Reefero contenedor refrigerado - $300 x tonelada">
@@ -235,7 +247,7 @@ if ($row[2] == "Administrador") {
                 <div class="row justify-content-center">
                     <div class="col-6">
                         <label for="codigo-de-contenedor" class="form-label">Código de Contenedor:</label>
-                        <input type="text" name="codigo-de-contenedor" id="" readonly class="form-control" style="width:60%;" value="ABC123" required>
+                        <input type="text" name="codigo-de-contenedor"  readonly class="form-control" style="width:60%;" value="<?= $codigoContenedorUnico ?>" required>
                     </div>
                 </div>
                 <div class="col-2">
