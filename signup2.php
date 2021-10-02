@@ -39,15 +39,6 @@
     <h1>SignUp</h1>
     <p>Ya tienes una cuenta <a href="login.php" style="color:blue;text-decoration:underline;">pulsa aqui</a></p> 
 
-    <form action="signup2.php" method="POST">
-      <input name="codigo" type="text" placeholder="Ingresa el código de usuario">
-      <input name="password" type="password" placeholder="Ingresa el Password">
-      <input type="text" name="rol" id="" placeholder="Rol">
-      <input type="text" name="pais" id="" placeholder="País">
-      <input type="text" name="puerto" id="" placeholder="Puerto">
-      <input type="submit" value="Registrar">
-    </form>
-
     <div class="container">
       <div class="row">
         <div class="col-sm">

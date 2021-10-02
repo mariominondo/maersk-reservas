@@ -30,6 +30,18 @@ require 'partials/bootstrap_header.php';
     $apellido = $row[1];
     $rol = $row[2];
   }
+
+  // SEARCH CONTENEDOR
+  // codigo_de_contendedor y nos devuelve valor_de_carga
+  $sql = "SELECT valor_de_carga FROM reservas WHERE codigo_de_contendedor = $_POST['codigo-de-contenedor']";
+  $result = $conexion->query($sql);
+
+  $row = $result->fetch-row();
+
+  if($row) {
+    $valor_de_carga = $row[0];
+    echo $valor_de_carga;
+  }
 ?>
 
 <div class="barra-nav__datos-usuario">
@@ -43,7 +55,7 @@ require 'partials/bootstrap_header.php';
 <h1>Reporte de Facturación</h1>
 <h4>Buscar Código de Contenedor</h4>
 
-<form action="" method="post" class="form-codigo-buscar-contenedor">
+<form action="reporte.php" method="post" class="form-codigo-buscar-contenedor">
   <label for="codigo-de-contenedor">Código de contenedor:
     <input type="text" name="codigo-de-contenedor" id="">
   </label>
@@ -51,18 +63,19 @@ require 'partials/bootstrap_header.php';
   
 </form>
 
+
 <div class="detalles">
-  <table class="tabla-detalles">
-    <th class="tabla-detalles__encabezado">
+<table class="table tabla-detalles">
+    <thead class="thead-dark tabla-detalles__encabezado">
       <tr>
-        <td>Tipo de rubro</td>
-        <td>Valor</td>
+        <th scope="col">Tipo de rubro</th>
+        <th scope="col">Valor</th>
       </tr>
-    </th>
+    </thead>
     <tbody class="tabla-detalles__body">
       <tr>
         <td>Flete marítimo internacional</td>
-        <td class="valor-flete-maritimo-internacional">29 toneladas x el precio del contendor</td>
+        <td class="valor-flete-maritimo-internacional">29 toneladas x el precio del contenedor</td>
       </tr>
       <tr>
         <td>Desplazamiento del contenedor</td>

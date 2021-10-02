@@ -163,87 +163,88 @@ if ($row[2] == "Administrador") {
             </div>
         </div>
 
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <label for="receptor-de-carga" class="form-label">Receptor de Carga:</label>
+                <input type="text" name="receptor-de-carga" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-6">
-                    <label for="receptor-de-carga" class="form-label">Receptor de Carga:</label>
-                    <input type="text" name="receptor-de-carga" id="" style="display: block; width: 100%;text-align: center;" class="form-control" required>
+                    <label for="contrasena-de-recepcion" class="form-label">Contraseña de Recepción:</label>
+                    <input type="text" name="contrasena-de-recepcion" id="" readonly style="display: block; width: 100%;text-align: center;" class="form-control"  value="1" required>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <label for="contrasena-de-recepcion" class="form-label">Contraseña de Recepción:</label>
-                        <input type="text" name="contrasena-de-recepcion" id="" readonly style="display: block; width: 100%;text-align: center;" class="form-control"  value="1" required>
-                    </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <label for="tipo-de-carga" class="form-label">Tipo de Carga:</label>
+                    <input type="text" name="tipo-de-carga" id="" list="tipo-de-carga" class="form-select" required>
+                    <datalist id="tipo-de-carga">
+                        <option value="Productos animales">
+                        <option value="Cereales y otras preparaciones">
+                        <option value="Textiles">
+                        <option value="Prendas de Vestir">
+                        <option value="Cueros, calzado, etc.">
+                        <option value="Máquinas no eléctricas">
+                        <option value="Máquinas eléctricas">
+                        <option value="Material de transporte">
+                        <option value="Manufacturas">
+                        <option value="Salud y productos para el hogar">
+                    </datalist>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <label for="descripcion-de-carga" class="form-label">Descripción de la Carga:</label>
+                    <input type="text" name="descripcion-de-carga" id="" style="display: block; width: 100%; text-align: center;" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <label for="peso-de-carga" class="form-label">Peso de Carga (Kg):</label>
+                    <input type="text" name="peso-de-carga" id="" style="display: block; width: 100%;text-align: left;" class="form-control" required>
+                </div>
+
+
+                <div class="col-3">
+                    <label for="valor-de-carga" class="form-label">Valor de la Carga:</label>
+                    <input type="text" style="width: 50%;" name="valor-de-carga" id="" list="valor-de-carga" class="form-select" required>
+                    <datalist id="valor-de-carga">
+                        <option value="$1,000">
+                        <option value="$2,000">
+                        <option value="$3,000">
+                        <option value="$4,000">
+                        <option value="$5,000">
+                    </datalist>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <label for="tipo-de-contenedor" class="form-label">Tipo de Contenedor:</label>
+                    <input type="text" name="tipo-de-contenedor" id="" list="tipo-de-contenedor" class="form-select" style="width:80%" required>
+                    <datalist id="tipo-de-contenedor">
+                        <option value="DRVA -Dry Van o contenedor seco - $200 x tonelada">
+                        <option value="REFRR -Reefero contenedor refrigerado - $300 x tonelada">
+                        <option value="OTSUP -Open Top o apertura superior - $260 x tonelada">
+                        <option value="OSSI -Open Side o apertura lateral - $260 x tonelada">
+                        <option value="TKCS -Tank o contenedor cisterna - $400 x tonelada">
+                    </datalist>
                 </div>
 
                 <div class="row justify-content-center">
                     <div class="col-6">
-                        <label for="tipo-de-carga" class="form-label">Tipo de Carga:</label>
-                        <input type="text" name="tipo-de-carga" id="" list="tipo-de-carga" class="form-select" required>
-                        <datalist id="tipo-de-carga">
-                            <option value="Productos animales">
-                            <option value="Cereales y otras preparaciones">
-                            <option value="Textiles">
-                            <option value="Prendas de Vestir">
-                            <option value="Cueros, calzado, etc.">
-                            <option value="Máquinas no eléctricas">
-                            <option value="Máquinas eléctricas">
-                            <option value="Material de transporte">
-                            <option value="Manufacturas">
-                            <option value="Salud y productos para el hogar">
-                        </datalist>
+                        <label for="codigo-de-contenedor" class="form-label">Código de Contenedor:</label>
+                        <input type="text" name="codigo-de-contenedor" id="" readonly class="form-control" style="width:60%;" value="ABC123" required>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <label for="descripcion-de-carga" class="form-label">Descripción de la Carga:</label>
-                        <input type="text" name="descripcion-de-carga" id="" style="display: block; width: 100%; text-align: center;" class="form-control" required>
-                    </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-outline-dark" style="margin-top:30px;" name="submit-reservar">Reservar</button>
                 </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-3">
-                        <label for="peso-de-carga" class="form-label">Peso de Carga (Kg):</label>
-                        <input type="text" name="peso-de-carga" id="" style="display: block; width: 100%;text-align: left;" class="form-control" required>
-                    </div>
-
-
-                    <div class="col-3">
-                        <label for="valor-de-carga class=" form-label">Valor de la Carga:</label>
-                        <input type="text" style="width :50%;" name="valor-de-carga" id="" list="valor-de-carga" class="form-select" required>
-                        <datalist id="valor-de-carga">
-                            <option value="$1,000">
-                            <option value="$2,000">
-                            <option value="$3,000">
-                            <option value="$4,000">
-                            <option value="$5,000">
-                        </datalist>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <label for="tipo-de-contenedor" class="form-label">Tipo de Contenedor:</label>
-                        <input type="text" name="tipo-de-contenedor" id="" list="tipo-de-contenedor" class="form-select" style="width:80%" required>
-                        <datalist id="tipo-de-contenedor">
-                            <option value="DRVA -Dry Van o contenedor seco - $200 x tonelada">
-                            <option value="REFRR -Reefero contenedor refrigerado - $300 x tonelada">
-                            <option value="OTSUP -Open Top o apertura superior - $260 x tonelada">
-                            <option value="OSSI -Open Side o apertura lateral - $260 x tonelada">
-                            <option value="TKCS -Tank o contenedor cisterna - $400 x tonelada">
-                        </datalist>
-                    </div>
-
-                    <div class="row justify-content-center">
-                        <div class="col-6">
-                            <label for="codigo-de-contenedor" class="form-label">Código de Contenedor:</label>
-                            <input type="text" name="codigo-de-contenedor" id="" readonly class="form-control" style="width:60%;" value="1" required>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-outline-dark" style="margin-top:30px;" name="submit-reservar">Reservar</button>
-                    </div>
-                </div>
+            </div>
+        </div>  
     </div>
-    </form>
+</form>
 
 <?php
 
